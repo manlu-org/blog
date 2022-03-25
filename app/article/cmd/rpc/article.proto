@@ -1,0 +1,51 @@
+syntax = "proto3";
+
+package article;
+
+message CreateArticleReq {
+  string title = 1;
+  string content = 2;
+}
+message CreateArticleResp {
+  bool success = 1;
+  string message = 2;
+}
+
+message ArticleDetail {
+  int64 id = 1;
+  string title = 2;
+  string content = 3;
+}
+
+message GetArticleListReq {
+  int64 page = 1;
+  int64 page_size = 2;
+}
+
+message GetArticleListResp {
+  repeated ArticleDetail list = 1;
+  int64 total = 2;
+}
+
+message ShowArticleReq {
+  int64 id = 1;
+}
+message ShowArticleResp {
+  ArticleDetail article = 1;
+}
+
+message DeleteArticleReq {
+  int64 id = 1;
+}
+message DeleteArticleResp {
+  bool success = 1;
+  string message = 2;
+}
+
+service article {
+  // create article
+  rpc CreateArticle(CreateArticleReq) returns (CreateArticleResp);
+  rpc GetArticleList(GetArticleListReq) returns (GetArticleListResp);
+  rpc ShowArticle(ShowArticleReq) returns (ShowArticleResp);
+  rpc DeleteArticle(DeleteArticleReq) returns (DeleteArticleResp);
+}

@@ -1,0 +1,7 @@
+Name: user
+Host: 0.0.0.0
+Port: 9094
+Auth:
+  AccessSecret: hello-world-test-secret
+  AccessExpire: 86400
+

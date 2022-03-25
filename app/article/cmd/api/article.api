@@ -1,0 +1,70 @@
+syntax = "v1"
+
+type (
+	PageReq {
+		PageSize int64 `form:"page_size"`
+		Page     int64 `form:"page"`
+	}
+
+	Meta {
+		PageSize int64 `json:"page_size"`
+		Page     int64 `json:"page":"page"`
+		Total    int64 `json:"total"`
+	}
+
+	Article {
+		Id      int64  `json:"id"`
+		Titicle string `json:"titicle"`
+		Content string `json:"content"`
+	}
+
+	GetArticleListResp {
+		List interface{} `json:"list"`
+		Meta *Meta       `json:"meta"`
+	}
+
+	ShowArticleReq {
+		Id int64 `path:"id"`
+	}
+
+	ShowArticleResp {
+		Article *Article `json:"article"`
+	}
+
+	CreateArticleReq {
+		Title   string `form:"title"`
+		Content string `form:"content"`
+	}
+	CreateArticleResp {
+		Success bool `json:"success"`
+	}
+
+	DeleteArticleReq {
+		Id int64 `path:"id"`
+	}
+	DeleteArticleResp {
+		Success bool `json:"success"`
+	}
+)
+
+@server (
+	prefix: api/v1
+	group: article
+)
+service article {
+	@doc "获取文章列表"
+	@handler GetArticleList
+	get /article/list(PageReq) returns (GetArticleListResp)
+	
+	@doc "文章详情"
+	@handler ShowArticle
+	get /article/:id(ShowArticleReq) returns (ShowArticleResp)
+	
+	@doc "创建文章"
+	@handler CreateArticle
+	post /article/create(CreateArticleReq) returns (CreateArticleResp)
+	
+	@doc "删除文章"
+	@handler DeleteArticle
+	delete /article/:id/del (DeleteArticleReq) returns (DeleteArticleResp)
+}

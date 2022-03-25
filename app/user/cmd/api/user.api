@@ -1,0 +1,24 @@
+syntax = "v1"
+
+type (
+	UserLoginReq {
+		Username string `form:"username"`
+		Password string `form:"password"`
+	}
+
+	UserLoginResp {
+		Success   bool   `json:"success"`
+		Message   string `json:"message"`
+		Token     string `json:"token,optional"`
+		ExpiredAt int64  `json:"expiredAt,optional"`
+	}
+)
+
+@server (
+	prefix: api/v1
+	group: user
+)
+service user {
+	@handler UserLogin
+	post /user/login(UserLoginReq) returns (UserLoginResp)
+}
