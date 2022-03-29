@@ -1,0 +1,27 @@
+syntax = "proto3";
+
+package tag;
+
+message TagModel {
+  int64 id = 1;
+  string name = 2;
+}
+
+message GetTagListReq {
+}
+message GetTagListResp {
+  repeated TagModel tags = 1;
+}
+
+message GetTagInfoReq {
+  repeated int64 ids = 1;
+}
+
+message GetTagInfoResp {
+  repeated TagModel tag = 1;
+}
+
+service tag {
+  rpc GetTagList(GetTagListReq) returns (GetTagListResp);
+  rpc GetTagInfo(GetTagInfoReq) returns (GetTagInfoResp);
+}

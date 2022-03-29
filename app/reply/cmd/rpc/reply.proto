@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+package reply;
+
+message GetReplyByArticleIdReq {
+  int64 article_id = 1;
+}
+
+message ReplyModel {
+  int64 id = 1;
+  string content = 2;
+  string created_at = 3;
+}
+
+message GetReplyByArticleIdResp {
+  repeated ReplyModel reply = 1;
+}
+
+service reply {
+  rpc GetReplyByArticleId(GetReplyByArticleIdReq) returns (GetReplyByArticleIdResp);
+}

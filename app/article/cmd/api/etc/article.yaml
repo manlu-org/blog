@@ -1,3 +1,12 @@
 Name: article
 Host: 0.0.0.0
 Port: 9090
+
+Reply:
+  Endpoints:
+    - 127.0.0.1:8081
+
+Tag:
+  Endpoints:
+    - 127.0.0.1:8082
+

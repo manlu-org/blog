@@ -1,0 +1,13 @@
+localhost {
+    handle_path /api/v1/article/* {
+        rewrite * /api/v1/article{path}
+        reverse_proxy localhost:9090
+    }
+
+    handle_path /api/v1/tag/* {
+        rewrite * /api/v1/tag{path}
+        reverse_proxy localhost:9092
+    }
+
+    respond "404 not found" 404
+}

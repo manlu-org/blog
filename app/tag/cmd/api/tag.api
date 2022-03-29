@@ -1,0 +1,21 @@
+syntax = "v1"
+
+type (
+	TagModel {
+		Id   int64  `json:"id"`
+		Name string `json:"name"`
+	}
+
+	GetTagListResp {
+		Tags []*TagModel `json:"tags"`
+	}
+)
+
+@server (
+	prefix: api/v1
+	group: tag
+)
+service tag {
+	@handler GetTagList
+	get /tag/list returns (GetTagListResp)
+}

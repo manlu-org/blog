@@ -24,7 +24,6 @@ func NewCreateArticleLogic(ctx context.Context, svcCtx *svc.ServiceContext) Crea
 }
 
 func (l *CreateArticleLogic) CreateArticle(req types.CreateArticleReq) (resp *types.CreateArticleResp, err error) {
-	// todo: add your logic here and delete this line
-
+	resp = &types.CreateArticleResp{Success: true}
 	return
 }

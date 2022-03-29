@@ -24,7 +24,13 @@ func NewShowArticleLogic(ctx context.Context, svcCtx *svc.ServiceContext) ShowAr
 }
 
 func (l *ShowArticleLogic) ShowArticle(req types.ShowArticleReq) (resp *types.ShowArticleResp, err error) {
-	// todo: add your logic here and delete this line
+
+	resp = &types.ShowArticleResp{
+		Article: &types.Article{
+			Id:      1,
+			Titicle: "hello",
+			Content: "world",
+		}}
 
 	return
 }

@@ -7,6 +7,5 @@ import (
 
 type Config struct {
 	rest.RestConf
-	Reply zrpc.RpcClientConf
-	Tag   zrpc.RpcClientConf
+	Tag zrpc.RpcClientConf
 }
